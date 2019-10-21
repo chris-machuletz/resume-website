@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
-  // Always show nav bg on mobile devices
-  if ($(window).width() < 768) {
-    $("nav.navbar").addClass("navbar-bg");
-  }
+  // Always show navbar-bg on mobile devices
+  if ($(window).width() < 768) $("nav.navbar").addClass("navbar-bg");
+
   $(window).resize(function() {
-    if ($(window).width() < 768) {
-      $("nav.navbar").addClass("navbar-bg");
-    }
+    if ($(window).width() < 768) $("nav.navbar").addClass("navbar-bg");
   });
+
+  // Show navbar-bg even if user reloads page and client is not on top of page
+  if ($(window).scrollTop() > 0) $("nav.navbar").addClass("navbar-bg");
 
   // Change navbar background after scroll
   $(window).scroll(function() {
@@ -55,5 +55,19 @@ $(document).ready(function() {
       },
       1000
     );
+  });
+
+  $('input[type=submit]').click(function() {
+    $('.submitted').slideDown();
+    this.disabled = true;
+  });
+
+  $('input[type=text]').click(function() {
+    $('.submitted').slideUp();
+    $('input[type=submit]').removeAttr('disabled');
+  });
+  $('textarea').click(function() {
+    $('.submitted').slideUp();
+    $('input[type=submit]').removeAttr('disabled');
   });
 });

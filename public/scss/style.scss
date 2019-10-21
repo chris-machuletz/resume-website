@@ -461,6 +461,7 @@ p {
         width: 100%;
         min-height: 20rem;
         max-height: 25rem;
+        white-space: pre-wrap;
         @media screen and (max-width: 992px) {
             min-height: 12rem;
             max-height: 12rem;
@@ -483,6 +484,13 @@ p {
             color: #000000;
             border: 3px solid #000000;
         }
+    }
+    .submitted {
+        display: none;
+        text-align: center;
+        color: #4caf50;
+        font-size: 100%;
+        margin-top: -1rem;
     }
 }
 
