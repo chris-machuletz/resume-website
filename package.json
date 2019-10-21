@@ -1,0 +1,19 @@
+{
+  "name": "resume-website",
+  "version": "1.0.0",
+  "description": "An online CV for Christoph Machuletz",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris-machuletz/resume-website.git"
+  },
+  "author": "Christoph Machuletz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris-machuletz/resume-website/issues"
+  },
+  "homepage": "https://github.com/chris-machuletz/resume-website#readme"
+}
