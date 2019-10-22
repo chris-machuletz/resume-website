@@ -4,6 +4,8 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const sassMiddleware = require('node-sass-middleware');
 const csp = require('express-csp-header');
+const { body } = require('express-validator');
+const { sanitizeBody } = require('express-validator');
 var favicon = require('serve-favicon');
 const nodemailer = require('nodemailer');
 
@@ -21,9 +23,12 @@ app.engine(
     })
 );
 
+app.use(express.json());
+
 app.use(csp({
     policies: {
-        'default-src': [csp.SELF, 'fonts.googleapis.com', 'fonts.gstatic.com', 'http://localhost:3000']
+        'default-src': [csp.SELF, 'fonts.googleapis.com', 'fonts.gstatic.com', 'cdnjs.cloudflare.com'],
+        'img-src': ['data:', csp.SELF],
     }
 }));
 app.use(favicon(path.join(__dirname, 'public', 'assets/favicon.ico')))
@@ -63,7 +68,13 @@ app.get('/', (req, res) => {
     res.render('index', {year: date});
 });
 
-app.post('/', (req, res) => {
+app.post('/', [
+    body('fullname').isAlpha().withMessage('Der Name von Ihnen eingegebene Name ist ungültig.'),
+    body('email').isEmail().withMessage('Der Name von Ihnen eingegebene E-Mail Adresse ist ungültig.'),
+    body('subject').isAlpha(),
+    body('message').isAlpha(),
+    sanitizeBody('notifyOnReply').toBoolean()
+],(req, res) => {
     const output = `
         <h3>Kontaktanfrage über Nodemail-Client</h3>
         <p>
@@ -75,12 +86,12 @@ app.post('/', (req, res) => {
     `;
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        host: 'plesk.eternal-hosting.de',
-        port: 465,
-        secure: true, // true for 465, false for other ports
+        host: 'smtp.hs-fulda.de',
+        port: 587,
+        secure: false, // true for 465, false for other ports
         auth: {
-            user: '_chris@content-managers.com', // generated ethereal user
-            pass: 'RLwDT8d2A79AsoyiNL7y29Dg2DZz'  // generated ethereal password
+            user: 'fdai4340', // generated ethereal user
+            pass: 'Jammingonf1re'  // generated ethereal password
         },
         tls: {
             rejectUnauthorized: false
@@ -89,7 +100,7 @@ app.post('/', (req, res) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: `"${req.body.fullname}" <chris@content-managers.com>`, // sender address
+        from: `"${req.body.fullname}" <christoph.machuletz@informatik.hs-fulda.de>`, // sender address
         to: 'machuletz.christoph@gmail.com', // list of receivers
         subject: `${req.body.subject}`, // Subject line
         text: output, // plain text body
@@ -99,18 +110,22 @@ app.post('/', (req, res) => {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return console.log(error);
+            res.status(200).send('Fehler beim Senden der Nachricht.');
         }
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-        res.status(204).send();
+        res.status(200).send('<meta http-equiv="refresh" content="3;url=http://localhost:3000/#contact">Nachricht erfolgreich versendet. Sie werden automatisch weitergeleitet. Falls nicht, klicken Sie auf den Zurück-Button Ihres Browsers.');
     });
 });
 
 app.get('/impressum', (req, res) => {
     var date = new Date().getFullYear();
     res.render('impressum', {year: date});
+});
+app.get('/datenschutz', (req, res) => {
+    var date = new Date().getFullYear();
+    res.render('datenschutz', {year: date});
 });
 
 app.listen(3000, () => console.log('Server started on port 3000...'));

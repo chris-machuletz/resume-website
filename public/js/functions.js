@@ -48,6 +48,7 @@ $(document).ready(function() {
   var scrollLink = $(".smoothscroll");
 
   scrollLink.click(function(e) {
+    console.log(e, scrollLink);
     e.preventDefault();
     $("body,html").animate(
       {
@@ -71,3 +72,9 @@ $(document).ready(function() {
     $('input[type=submit]').removeAttr('disabled');
   });
 });
+
+const heroText = document.querySelector('.hero-text');
+
+const tl = new TimelineMax();
+
+tl.fromTo(heroText, 1, {y: '-10%', opacity: 0}, {y: '0%', opacity: 1}, 0.5);

@@ -4,6 +4,7 @@
   "description": "An online CV for Christoph Machuletz",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +23,7 @@
     "express": "^4.17.1",
     "express-csp-header": "^2.3.1",
     "express-handlebars": "^3.1.0",
+    "express-validator": "^6.2.0",
     "jquery": "^3.4.1",
     "node-sass-middleware": "^0.11.0",
     "nodemailer": "^6.3.1",

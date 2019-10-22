@@ -433,6 +433,7 @@ p {
         grid-template-areas: 
             'fullname email'
             'subject message'
+            'disc disc'
             'submit submit';
         column-gap: 3rem;
         row-gap: 2rem;
@@ -444,7 +445,15 @@ p {
                 'email'
                 'subject'
                 'message'
+                'disc'
                 'submit';
+        }
+    }
+    div.dsvgo-disc {
+        grid-area: disc;
+        label {
+            display: block;
+            text-align: center;
         }
     }
     input, textarea {
@@ -455,7 +464,7 @@ p {
         border-radius: 6px;
     }
     input {
-        width: 100%;
+        // width: 100%;
     }
     textarea {
         width: 100%;
@@ -494,8 +503,38 @@ p {
     }
 }
 
+main.main-impressum, main.main-datenschutz {
+    text-align: left;
+    h1 {
+        margin-bottom: 5rem;
+        @media screen and (max-width: 768px) {
+            font-size: 2rem;
+        }
+    }
+    h2 {
+        text-align: left;
+        font-size: 2rem;
+        margin-top: 3rem;
+        @media screen and (max-width: 768px) {
+            font-size: 1.25rem;
+        }
+    }
+    h3 {
+        margin-top: 5rem;
+    }
+    p {
+        text-align: justify;
+    }
+}
+
 footer.container-fluid {
     padding: 1rem 0;
+}
+footer a {
+    color: #FFF;
+    &:hover {
+        color: #CBCBCB;
+    }
 }
 footer > div {
     display: grid;

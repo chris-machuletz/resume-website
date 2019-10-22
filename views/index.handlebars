@@ -36,7 +36,7 @@
     <main>
         <div class="container-fluid hero-0 section" id="top-hero">
             <div class="container">
-                <div>
+                <div class="hero-text">
                     <h1>Darf ich mich vorstellen?</h1>
                     <p>
                         Mein Name ist Christoph Machuletz. Ich bin selbstständiger
@@ -234,7 +234,7 @@
                             <div>
                                 <h4>API Bachelorprojekt</h4>
                                 <span>Rest API<br />erstellt mit: NodeJS und Express<br /><b>2019</b></span><br />
-                                <a href="#">dmprojekt19.informatik.hs-fulda.de</a>
+                                <a href="https://api.dmprojekt19.informatik.hs-fulda.de/" target="_blank">api.dmprojekt19.informatik.hs-fulda.de</a>
                             </div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                             <div>
                                 <h4>Dorf-Aktiv-Museum Wiesenthal</h4>
                                 <span>Website<br />erstellt mit: Wordpress<br /><b>2019</b></span><br />
-                                <a href="#">dorf-aktiv-museum.de</a>
+                                <a href="https://www.dorf-aktiv-museum.de" target="_blank">dorf-aktiv-museum.de</a>
                             </div>
                         </div>
                     </div>
@@ -252,14 +252,14 @@
                             <div>
                                 <h4>Schoppegarde Löschenrod</h4>
                                 <span>Website<br />erstellt mit: Wordpress<br /><b>2017</b></span><br />
-                                <a href="#">schoppegarde.de</a>
+                                <a href="http://www.schoppegarde.de/" target="_blank">schoppegarde.de</a>
                             </div>
                         </div>
                     </div>
                     <div class="project-single github-preview">
                         <div>
                             <img src="./assets/iconmonstr-github.png" alt="GitHub" />
-                            <a href="#">Mein GitHub-Account</a>
+                            <a href="#" target="_blank">Mein GitHub-Account</a>
                         </div>
                     </div>
                 </div>
@@ -277,20 +277,24 @@
 
                     <form method="POST" class="contact-form" action="">
                         <div>
-                            <input type="text" name="fullname" id="contact-fullname" placeholder="Vollständiger Name" />
+                            <input type="text" name="fullname" id="contact-fullname" class="w-100" placeholder="Vollständiger Name" />
                         </div>
                         <div>
-                            <input type="text" name="email" id="contact-email" placeholder="E-Mail" />
+                            <input type="text" name="email" id="contact-email" class="w-100" placeholder="E-Mail" />
                         </div>
                         <div>
-                            <input type="text" name="subject" id="contact-subject" placeholder="Betreff" />
+                            <input type="text" name="subject" id="contact-subject" class="w-100" placeholder="Betreff" />
                         </div>
                         <div>
-                            <textarea name="message" id="contact-message" placeholder="Ihre Nachricht"></textarea>
+                            <textarea name="message" id="contact-message" class="w-100" placeholder="Ihre Nachricht"></textarea>
+                        </div>
+                        <div class="dsvgo-disc">
+                            <label for="dsvgo"><input type="checkbox" name="dsvgo" id="dsvgo" required> Ich habe die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und stimme dieser zu.</label>
                         </div>
                         <input type="submit" value="Absenden" />
                     </form>
-                    <div class="submitted"><i class="fas fa-check-circle"></i> Ihre Nachricht wurde gesendet</div>
+                    {{msg}}
+                    {{!-- <div class="submitted"><i class="fas fa-check-circle"></i> Ihre Nachricht wurde gesendet</div> --}}
                 </div>
             </div>
         </div>
@@ -299,12 +303,15 @@
         <div class="container">
             <span>&copy; {{year}}, Christoph Machuletz</span>
             <span class="footer-social">
-                <i class="fab fa-xing"></i>
-                <i class="fab fa-linkedin"></i>
+                <a href="https://www.xing.com/profile/Christoph_Machuletz" target="_blank"><i class="fab fa-xing"></i></a>
+                <a href="https://www.linkedin.com/in/christoph-machuletz-01b18b187/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </span>
-            <span><a href="/impressum">Impressum</a></span>
+            <span><a href="/impressum">Impressum</a> | <a href="/datenschutz">Datenschutzerklärung</a></span>
         </div>
     </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js" integrity="sha256-lPE3wjN2a7ABWHbGz7+MKBJaykyzqCbU96BJWjio86U=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js" integrity="sha256-fIkQKQryItPqpaWZbtwG25Jp2p5ujqo/NwJrfqAB+Qk=" crossorigin="anonymous"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
