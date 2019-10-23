@@ -115,7 +115,7 @@ app.post('/', [
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-        res.status(200).send('<meta http-equiv="refresh" content="3;url=http://localhost:3000/#contact">Nachricht erfolgreich versendet. Sie werden automatisch weitergeleitet. Falls nicht, klicken Sie auf den Zurück-Button Ihres Browsers.');
+        res.status(200).send('<meta http-equiv="refresh" content="3;url=https://chmz.de/#contact">Nachricht erfolgreich versendet. Sie werden automatisch weitergeleitet. Falls nicht, klicken Sie auf den Zurück-Button Ihres Browsers.');
     });
 });
 
